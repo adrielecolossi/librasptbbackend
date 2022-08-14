@@ -9,8 +9,9 @@ var md5 = require("md5");
 
 
 exports.getCategoriasdaQuestao = async function(questao){
-  const result  = await db.query("select categoria from questaocategoria where questao=" + questao)
-  return result.rows;
+  const sql = "select categoria from questaocategoria where questao= $1;"
+    const result = await db.query(sql, [questao]);
+    return result.rows;
 }
 
 exports.getQuestao = async function () {
@@ -18,7 +19,8 @@ exports.getQuestao = async function () {
   return result.rows;
 };
 exports.getQuestaoId = async function (id) {
-  result = await db.query("select * from questao where id =" + id);
+  const sql = "select * from questao where id = $1;"
+  const result = await db.query(sql, [id]);
   return result.rows;
 };
 exports.getCategoria = async function () {
@@ -26,31 +28,23 @@ exports.getCategoria = async function () {
   return result.rows;
 };
 exports.getSenha = async function (email) {
-  result = await db.query(
-    "select usuariobanco.senha from usuariobanco where usuariobanco.email='" +
-      email +
-      "'"
-  );
+  const sql = "select usuariobanco.senha from usuariobanco where usuariobanco.email= $1;"
+  const result = await db.query(sql, [email]);
   return result.rows;
 };
 exports.getSenhaApp = async function (email) {
-  result = await db.query(
-    "select jogador.senha from jogador where jogador.email='" + email + "'"
-  );
+  const sql = "select jogador.senha from jogador where jogador.email= $1;"
+  const result = await db.query(sql, [email]);
   return result.rows;
 };
 exports.getUser = async function (email) {
-  result = await db.query(
-    "select usuariobanco.nome from usuariobanco where usuariobanco.email = '" +
-      email +
-      "'"
-  );
+  const sql = "select usuariobanco.nome from usuariobanco where usuariobanco.email= $1;"
+  const result = await db.query(sql, [email]);
   return result.rows;
 };
 exports.checkExistence = async function (email) {
-  result = await db.query(
-    "select nome from jogador where email='" + email + "'"
-  );
+  const sql = "select nome from jogador where email= $1;"
+  const result = await db.query(sql, [email]);
   return result.rows;
 };
 exports.cadastrarUsuario = function (
@@ -61,17 +55,11 @@ exports.cadastrarUsuario = function (
   senha
 ) {
   
-  // return db.none("insert into jogador(email,senha,nome,genero, datadenascimento) values ('"+ email + "', '" + senha +"', '"+ nome +"', "+ genero +", '" + datadenascimento +"' )");
+  const sql = "insert into jogador(email,senha,nome,genero, datadenascimento) values ($1, $2, $3, $4, $5)"
+  const result = await db.none(sql, [email, senha, nome, genero, datadenascimento]);
+
+  //return db.none("insert into jogador(email,senha,nome,genero, datadenascimento) values ('"+ email + "', '" + senha +"', '"+ nome +"', "+ genero +", '" + datadenascimento +"' )");
 };
 exports.Login = function (req, res, next) {
   
 };
-exports.saveQuestao = async function (questao) {
-  //if(questao.AC == "on"){
-  
-  //return db.none("insert into associar(opcao1, opcao2, opcao3, opcao4, opcao5, opcao6, opcao7, opcao8, opcao9, opcao10) values ('"+ questao.coluna1 +"','" + questao.coluna2+ "','" + questao.coluna3 +"','" + questao.coluna4 + "','"+ questao.coluna5 + "','"+ questao.coluna6 + "','" + questao.coluna7 + "','" + questao.coluna8 + "','" + questao.coluna9 + "','" + questao.coluna10 + "')'");
-  //}
-  //return db.none('insert into preencherdigitando(frase, resposta) values(oi, bom dia)')
-  //return db.none('insert into blabla returning')
-};
-
