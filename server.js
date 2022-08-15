@@ -3,7 +3,15 @@ const bodyParser = require('body-parser');
 import cors from 'cors';
 
 const app= express()
-app.use(cors()) //configuração do servidor
+
+    cors({
+        credentials: true,
+        origin: [
+            'https://bancolibrasptb.herokuapp.com',
+        ]
+    }),
+
+        app.use(cors({ origin: "https://bancolibrasptb.herokuapp.com", credentials: true })) //configuração do servidor
 //app.use(express.json());
 
 const session = require('express-session');
@@ -55,4 +63,4 @@ app.get('/', (req, res)=>{
 
 
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT || 3001)
