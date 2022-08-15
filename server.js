@@ -4,21 +4,17 @@ import cors from 'cors';
 
 const app= express()
 app.use(cors())
-    cors({
+app.cors({
         credentials: true,
         origin: {
             'https://bancolibrasptb.herokuapp.com',
         }
     })
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
 
 app.setHeader("Access-Control-Allow-Origin", "*");
-
+app.header("Access-Control-Allow-Origin", "*");
+app.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 // app.use(cors({ origin: "https://bancolibrasptb.herokuapp.com", credentials: true })) //configuração do servidor
 //app.use(express.json());
 
