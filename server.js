@@ -3,19 +3,19 @@ const bodyParser = require('body-parser');
 import cors from 'cors';
 
 const app= express()
-
+app.use(cors())
     cors({
         credentials: true,
-        origin: [
+        origin: {
             'https://bancolibrasptb.herokuapp.com',
-        ]
-    }),
+        }
+    })
 
-        app.use(function (req, res, next) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            next();
-        });
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 // app.use(cors({ origin: "https://bancolibrasptb.herokuapp.com", credentials: true })) //configuração do servidor
 //app.use(express.json());
@@ -44,7 +44,7 @@ app.use(bodyParser.urlencoded({
 //app.use(formidableMiddleware());
 //são middlewears fszem validação ou filtro ou incluir algo
 const rotas =  require('./rest_api/server/routes/questaoRoute.js')
-app.set('Access-Control-Allow-Origin', 'https://bancolibrasptb.herokuapp.com');
+
 app.use('/', rotas)
 
 //app.use('/', require('./rest_api/server/route/questaoRoute'));
