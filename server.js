@@ -1,22 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-import cors from 'cors';
+const cors = require('cors')
 
 const app= express()
 app.use(cors())
-app.cors({
-        credentials: true,
-        origin: [
-            'https://bancolibrasptb.herokuapp.com'
-        ]
-    })
-
-
-app.setHeader("Access-Control-Allow-Origin", "*");
-app.header("Access-Control-Allow-Origin", "*");
-app.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-// app.use(cors({ origin: "https://bancolibrasptb.herokuapp.com", credentials: true })) //configuração do servidor
-//app.use(express.json());
 
 const session = require('express-session');
 app.use(session({

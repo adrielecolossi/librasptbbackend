@@ -47,7 +47,7 @@ exports.checkExistence = async function (email) {
   const result = await db.query(sql, [email]);
   return result.rows;
 };
-exports.cadastrarUsuario = function (
+exports.cadastrarUsuario = async function (
   email,
   nome,
   genero,
