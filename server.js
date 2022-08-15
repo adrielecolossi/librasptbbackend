@@ -17,6 +17,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.setHeader("Access-Control-Allow-Origin", "*");
+
 // app.use(cors({ origin: "https://bancolibrasptb.herokuapp.com", credentials: true })) //configuração do servidor
 //app.use(express.json());
 
