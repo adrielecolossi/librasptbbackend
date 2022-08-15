@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({
 //app.use(formidableMiddleware());
 //são middlewears fszem validação ou filtro ou incluir algo
 const rotas =  require('./rest_api/server/routes/questaoRoute.js')
-app.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+app.set('Access-Control-Allow-Origin', 'https://bancolibrasptb.herokuapp.com');
 app.use('/', rotas)
 
 //app.use('/', require('./rest_api/server/route/questaoRoute'));
