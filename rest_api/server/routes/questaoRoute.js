@@ -289,6 +289,9 @@ router.post("/login", async function (req, res, next) {
 
 router.get("/login", async function (req, res) {
   const tokenRecebido = req.query.token;
+  if(tokenRecebido== undefined){
+    return res.json({msg: "notLoggedIn"})
+  }
   let decodedToken;
   try {
     decodedToken = jwt.verify(tokenRecebido, 'somesupersecretsecret');
