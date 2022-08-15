@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors= require('cors')
 
 const app= express()
-app.use(cors()) //configuração do servidor
+//app.use(cors()) //configuração do servidor
 //app.use(express.json());
 
 const session = require('express-session');
@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({
 //app.use(formidableMiddleware());
 //são middlewears fszem validação ou filtro ou incluir algo
 const rotas =  require('./rest_api/server/routes/questaoRoute.js')
-
+app.set('Access-Control-Allow-Origin', 'http://localhost:3000');
 app.use('/', rotas)
 
 //app.use('/', require('./rest_api/server/route/questaoRoute'));
