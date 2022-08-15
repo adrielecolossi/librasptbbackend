@@ -6,9 +6,9 @@ const app= express()
 app.use(cors())
 app.cors({
         credentials: true,
-        origin: {
-            'https://bancolibrasptb.herokuapp.com',
-        }
+        origin: [
+            'https://bancolibrasptb.herokuapp.com'
+        ]
     })
 
 
