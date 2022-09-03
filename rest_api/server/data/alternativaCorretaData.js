@@ -26,7 +26,7 @@ exports.saveQuestaoMarcarMidia = async function (questao) {
       result3 = await db.query(sqlInsertCategoria, [result.rows[0].id, questao.categoria[i]]);
     }
     return ({ msg: "Questão salva com sucesso" });
-  } catch (error) {
+  } catch (error) { 
     return ({ msg: "Falha ao criar" });
   }
 };
